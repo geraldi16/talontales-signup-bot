@@ -25,3 +25,9 @@ export const InstanceInputMap = (() => {
 
     return map;
 })();
+
+export const PartyType = {
+    SMALL: 'small',
+    FULL: 'party',
+    FLEX: 'flex',
+}

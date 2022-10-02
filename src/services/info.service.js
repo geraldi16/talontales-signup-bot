@@ -1,6 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 
 import { InstanceInput } from '../constants/instances.constant.js';
+import { JobInput } from '../constants/job.constant.js';
 
 export function showInfo() {
     return new EmbedBuilder()
@@ -14,6 +15,14 @@ export function showInfo() {
             },
             {
                 name: '`!info`',
+                value: 'show usable command lists.',
+            },
+            {
+                name: '`!instancelist`',
+                value: 'show usable command lists.',
+            },
+            {
+                name: '`!joblist`',
                 value: 'show usable command lists.',
             },
             {
@@ -32,18 +41,38 @@ export function showInfo() {
                 name: '`!swap <jobname>`',
                 value: 'Change your current job to the designated job.\n example: `!swap bio`',
             },
-            {
-                name: '\u200B',
-                value: '\u200B',
-            },
         )
+}
+
+export function showInfoInstance() {
+    return new EmbedBuilder()
+        .setColor(0x0099FF)
+        .setTitle('Available Instance Command Lists')
+        .setDescription('Usable commands listed below:')
         .addFields(_getInstanceList());
 }
 
+export function showInfoJob() {
+    return new EmbedBuilder()
+        .setColor(0x0099FF)
+        .setTitle('Available Job Command Lists')
+        .setDescription('Usable commands listed below:')
+        .addFields(_getJobList());
+}
+
 function _getInstanceList() {
-    const list = [{ name: '<instancename> list available', value: '\u200B' }];
+    const list = [];
 
     for (const [key, values] of Object.entries(InstanceInput)) {
+        list.push({ name: key, value: values.join(', ') });
+    }
+    return list;
+}
+
+function _getJobList() {
+    const list = [];
+
+    for (const [key, values] of Object.entries(JobInput)) {
         list.push({ name: key, value: values.join(', ') });
     }
     return list;

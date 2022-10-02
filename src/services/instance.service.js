@@ -18,7 +18,7 @@ export async function setUpNewInstance(params, channelId) {
         existingData.instanceName = templateData.instanceName;
         existingData.playerLimit = templateData.playerLimit;
         existingData.reserveLimit = templateData.reserveLimit;
-        existingData.playerList = [];
+        existingData.playerList = templateData.playerList;
         existingData.reserveList = [];
         existingData.notes = null;
         existingData.dateTime = null;
@@ -31,6 +31,7 @@ export async function setUpNewInstance(params, channelId) {
         .setColor(0x0099FF)
         .setTitle(templateData.instanceName)
         .setDescription('Party List:')
+        .addFields(_renderPlayerList(templateData.playerList))
         .addFields({
             name: 'Notes',
             value: '\u200B',
@@ -44,4 +45,12 @@ function _validateParams(params) {
     if (params.length === 0) throw new Error('No Parameter provided');
 
     if (!InstanceInputMap.get(params[0])) throw new Error(`Instance name is not found - input: ${params[0]}`);
+}
+
+function _renderPlayerList(playerList) {
+    const valueString = playerList.reduce((result, value) => {
+        return result + `${value.job}: ${value.player?.username ?? ''} ${value.playerIGN ? `(${value.playerIGN})` : ''} \n`;
+    }, '');
+
+    return { name: '\u200B', value: valueString };
 }

@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 
 import Command from './constants/command.constant.js';
-import { showInfo } from './services/info.service.js';
+import { showInfo, showInfoInstance, showInfoJob } from './services/info.service.js';
 import { setUpNewInstance } from './services/instance.service.js';
 
 const PREFIX = '!';
@@ -26,6 +26,16 @@ client.on('messageCreate', async (message) => {
         switch (command) {
             case Command.INFO: {
                 const sentMessage = showInfo();
+                message.channel.send({ embeds: [sentMessage] });
+                break;
+            }
+            case Command.INSTANCELIST: {
+                const sentMessage = showInfoInstance();
+                message.channel.send({ embeds: [sentMessage] });
+                break;
+            }
+            case Command.JOBLIST: {
+                const sentMessage = showInfoJob();
                 message.channel.send({ embeds: [sentMessage] });
                 break;
             }
