@@ -1,5 +1,5 @@
 import { InstanceName, PartyType } from '../constants/instances.constant.js';
-import { getPartyListTemplate } from './playerListData.template.js';
+import { getPartyListTemplate, getReserveListTemplate } from './playerListData.template.js';
 
 export const InstanceTemplate = {
     [InstanceName.ENDLESS_TOWER]: {
@@ -8,7 +8,7 @@ export const InstanceTemplate = {
         playerLimit: 12,
         playerList: getPartyListTemplate(PartyType.SMALL, 12),
         reserveLimit: 5,
-        reserveList: [],
+        reserveList: getReserveListTemplate(5),
         notes: null,
         dateTime: null,
     },
@@ -18,7 +18,7 @@ export const InstanceTemplate = {
         playerLimit: 12,
         playerList: getPartyListTemplate(PartyType.FULL, 12),
         reserveLimit: 3,
-        reserveList: [],
+        reserveList: getReserveListTemplate(5),
         notes: null,
         dateTime: null,
     },
@@ -28,7 +28,7 @@ export const InstanceTemplate = {
         playerLimit: 12,
         playerList: getPartyListTemplate(PartyType.SMALL, 12),
         reserveLimit: 3,
-        reserveList: [],
+        reserveList: getReserveListTemplate(3),
         notes: null,
         dateTime: null,
     },
@@ -38,7 +38,7 @@ export const InstanceTemplate = {
         playerLimit: 12,
         playerList: getPartyListTemplate(PartyType.FLEX, 12),
         reserveLimit: 3,
-        reserveList: [],
+        reserveList: getReserveListTemplate(3),
         notes: null,
         dateTime: null,
     },
@@ -48,7 +48,7 @@ export const InstanceTemplate = {
         playerLimit: 6,
         playerList: getPartyListTemplate(PartyType.FLEX, 6),
         reserveLimit: 3,
-        reserveList: [],
+        reserveList: getReserveListTemplate(3),
         notes: null,
         dateTime: null,
     },
@@ -58,7 +58,7 @@ export const InstanceTemplate = {
         playerLimit: 6,
         playerList: getPartyListTemplate(PartyType.FLEX, 6),
         reserveLimit: 3,
-        reserveList: [],
+        reserveList: getReserveListTemplate(3),
         notes: null,
         dateTime: null,
     },

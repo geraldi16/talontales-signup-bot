@@ -111,7 +111,7 @@ export function getPartyListTemplate(partyType, limit) {
             const flexTemplate = [];
             for (let i=0; i<flexPartyQuota; i++) {
                 flexTemplate.push({
-                    job: 'Flexible',
+                    job: JobName.FLEX,
                     playerIGN: null,
                     player: null,
                 })
@@ -122,7 +122,7 @@ export function getPartyListTemplate(partyType, limit) {
             const flexTemplate = [];
             for (let i=0; i<limit; i++) {
                 flexTemplate.push({
-                    job: 'Flexible',
+                    job: JobName.FLEX,
                     playerIGN: null,
                     player: null,
                 })
@@ -131,4 +131,12 @@ export function getPartyListTemplate(partyType, limit) {
         }
         default: return [];
     }
+}
+
+export function getReserveListTemplate(limit) {
+    const template = [];
+    for (let i=0; i<limit; i++) {
+        template.push({ player: null });
+    }
+    return template;
 }

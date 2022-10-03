@@ -19,11 +19,11 @@ export function showInfo() {
             },
             {
                 name: '`!instancelist`',
-                value: 'show usable command lists.',
+                value: 'show available instance names that can be used.',
             },
             {
                 name: '`!joblist`',
-                value: 'show usable command lists.',
+                value: 'show available job names that can be used.',
             },
             {
                 name: '`!new <instancename>`',
@@ -36,6 +36,10 @@ export function showInfo() {
             {
                 name: '`!remove`',
                 value: 'Remove yourself from board.',
+            },
+            {
+                name: '`!show`',
+                value: 'Show latest sign up table.',
             },
             {
                 name: '`!swap <jobname>`',

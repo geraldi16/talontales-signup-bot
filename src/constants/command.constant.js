@@ -5,6 +5,7 @@ export default {
     NEW: 'new',
     ADD: 'add',
     REMOVE: 'remove',
+    SHOW: 'show',
     SWAP: 'swap',
     SET_DATE: 'setdate',
     SET_TIME: 'settime',

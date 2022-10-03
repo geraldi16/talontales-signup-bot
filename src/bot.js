@@ -2,7 +2,8 @@ import { Client, GatewayIntentBits } from 'discord.js';
 
 import Command from './constants/command.constant.js';
 import { showInfo, showInfoInstance, showInfoJob } from './services/info.service.js';
-import { setUpNewInstance } from './services/instance.service.js';
+import { setUpNewInstance, showLatestSignup } from './services/instance.service.js';
+import { addNewPlayer, removePlayer } from './services/player.service.js';
 
 const PREFIX = '!';
 const SPLITTER = ' ';
@@ -46,6 +47,36 @@ client.on('messageCreate', async (message) => {
                 } catch (error) {
                     console.log(error.message);
                     message.channel.send('Please provide correct instance name. See `!info` for more details.');
+                }
+                break;
+            }
+            case Command.ADD: {
+                try {
+                    const sentMessage = await addNewPlayer(message.author, message.channelId, params);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.REMOVE: {
+                try {
+                    const sentMessage = await removePlayer(message.author.id, message.channelId);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.SHOW: {
+                try {
+                    const sentMessage = await showLatestSignup(message.channelId);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
                 }
                 break;
             }

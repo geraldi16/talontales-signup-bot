@@ -17,28 +17,30 @@ export const JobName = {
     GUNSLINGER: 'Gunslinger',
     NINJA: 'Ninja',
     SUNO: 'SuperNovice',
+    RESERVE: 'reserve',
+    FLEX: 'Flexible',
 };
 
 export const JobListPriority = {
-    LK: 8,
-    PALADIN: 2,
-    SNIPER: 7,
-    CLOWN: 13,
-    GYPSY: 12,
-    CHAMP: 1,
-    HP: 4,
-    WHITESMITH: 9,
-    BIOCHEMIST: 5,
-    SINX: 11,
-    STALKER: 10,
-    PROFESSOR: 3,
-    HIGHWIZARD: 6,
-    SOULLINKER: 15,
-    STARGLADIATOR: 14,
-    GUNSLINGER: 17,
-    NINJA: 16,
-    SUNO: 18,
-    FLEX: 999,
+    [JobName.LK]: 8,
+    [JobName.PALADIN]: 2,
+    [JobName.SNIPER]: 7,
+    [JobName.CLOWN]: 13,
+    [JobName.GYPSY]: 12,
+    [JobName.CHAMP]: 1,
+    [JobName.HP]: 4,
+    [JobName.WHITESMITH]: 9,
+    [JobName.BIOCHEMIST]: 5,
+    [JobName.SINX]: 11,
+    [JobName.STALKER]: 10,
+    [JobName.PROFESSOR]: 3,
+    [JobName.HIGHWIZARD]: 6,
+    [JobName.SOULLINKER]: 15,
+    [JobName.STARGLADIATOR]: 14,
+    [JobName.GUNSLINGER]: 17,
+    [JobName.NINJA]: 16,
+    [JobName.SUNO]: 18,
+    [JobName.FLEX]: 999,
 };
 
 export const JobInput = {
@@ -60,6 +62,7 @@ export const JobInput = {
     [JobName.GUNSLINGER]: ['gs', 'guns', 'gun', 'gunslinger'],
     [JobName.NINJA]: ['ninja'],
     [JobName.SUNO]: ['novice', 'suno', 'supernovice'],
+    [JobName.FLEX]: ['flexible', 'flex'],
 }
 
 export const JobInputMap = (() => {
