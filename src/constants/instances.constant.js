@@ -31,3 +31,9 @@ export const PartyType = {
     FULL: 'party',
     FLEX: 'flex',
 }
+
+export const SetDateTimeType = {
+    DATE: 'date',
+    TIME: 'time',
+    DATETIME: 'datetime',
+}

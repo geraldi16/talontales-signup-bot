@@ -1,9 +1,10 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 
 import Command from './constants/command.constant.js';
+import { SetDateTimeType } from './constants/instances.constant.js';
 import { showInfo, showInfoInstance, showInfoJob } from './services/info.service.js';
-import { setUpNewInstance, showLatestSignup } from './services/instance.service.js';
-import { addNewPlayer, removePlayer } from './services/player.service.js';
+import { setDateTime, setNote, setUpNewInstance, showLatestSignup } from './services/instance.service.js';
+import { addNewPlayer, pingPlayer, removePlayer } from './services/player.service.js';
 
 const PREFIX = '!';
 const SPLITTER = ' ';
@@ -73,6 +74,60 @@ client.on('messageCreate', async (message) => {
             case Command.SHOW: {
                 try {
                     const sentMessage = await showLatestSignup(message.channelId);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.SET_DATE: {
+                try {
+                    const sentMessage = await setDateTime(message.channelId, SetDateTimeType.DATE, params[0]);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.SET_TIME: {
+                try {
+                    const sentMessage = await setDateTime(message.channelId, SetDateTimeType.TIME, params[0]);
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.SET_DATETIME: {
+                try {
+                    const sentMessage = await setDateTime(
+                        message.channelId,
+                        SetDateTimeType.DATETIME,
+                        params.join(' ')
+                    );
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.PING: {
+                try {
+                    const sentMessage = await pingPlayer(message.channelId);
+                    message.channel.send(sentMessage);
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.NOTE: {
+                try {
+                    const sentMessage = await setNote(message.channelId, params.join(' '));
                     message.channel.send({ embeds: [sentMessage] });
                 } catch (error) {
                     console.log(error);

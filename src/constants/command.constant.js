@@ -10,4 +10,6 @@ export default {
     SET_DATE: 'setdate',
     SET_TIME: 'settime',
     SET_DATETIME: 'setdatetime',
+    PING: 'ping',
+    NOTE: 'note',
 }

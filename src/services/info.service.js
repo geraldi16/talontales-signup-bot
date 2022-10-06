@@ -42,8 +42,24 @@ export function showInfo() {
                 value: 'Show latest sign up table.',
             },
             {
-                name: '`!swap <jobname>`',
-                value: 'Change your current job to the designated job.\n example: `!swap bio`',
+                name: '`!ping`',
+                value: 'Mention all players who sign the run.',
+            },
+            {
+                name: '`!setdate DD/MM`',
+                value: 'Set run date',
+            },
+            {
+                name: '`!settime HH:mm`',
+                value: 'Set run time',
+            },
+            {
+                name: '`!setdatetime DD/MM HH:mm`',
+                value: 'Set run date and time.',
+            },
+            {
+                name: '`!note`',
+                value: 'Set a note for your the run. Planning and preparation are the keys of success!',
             },
         )
 }

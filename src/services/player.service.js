@@ -55,6 +55,21 @@ export async function removePlayer(playerId, channelId) {
 
 }
 
+export async function pingPlayer(channelId) {
+    const signup = await validateAndGetSignupData(channelId);
+
+    let result = '';
+
+    signup.playerList.forEach((player) => {
+        if (player.player) {
+            result += `<@${player.player.id}> `
+        }
+    })
+    result += 'Lets get readyy! We are about to sail soon!!';
+
+    return result;
+}
+
 function _insertReservePlayer(reserveList, playerData) {
     let inserted = false;
     for (let i=0; i<reserveList.length; i++) {

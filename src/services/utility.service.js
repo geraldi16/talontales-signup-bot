@@ -1,4 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
+import moment from 'moment';
 
 import SignUp from '../models/SignUp.model.js';
 
@@ -23,11 +24,11 @@ export function buildSignupEmbedMessage(signupData) {
         .addFields(_renderReserveList(signupData.reserveList))
         .addFields({
             name: 'Notes',
-            value: '\u200B',
+            value: signupData.notes || '\u200B',
         })
         .addFields({
             name: 'When',
-            value: '\u200B',
+            value: _renderDateTime(signupData.dateTime) || '\u200B',
         })
         .setFooter({
             text: `${_getTakenSpot(signupData.playerList)} of ${signupData.playerLimit} taken.`
@@ -55,4 +56,22 @@ function _getTakenSpot(playerList) {
         if (data.player) return total + 1;
         return total;
     }, 0);
+}
+
+function _renderDateTime(dateTime) {
+    if (!dateTime) return null;
+
+    const dateString = moment(dateTime)
+    .tz('America/Los_Angeles')
+    .format('DD MMMM, hh:mm');
+    const localTime = moment(dateTime).format('DD MMMM HH:mm');
+
+    return `${dateString} PST Time \n *(${localTime} GMT${_getUtcOffset(dateTime)} your locale time)*`;
+}
+
+function _getUtcOffset(time) {
+    const offset = moment(time).utcOffset() / 60;
+    const operator = offset > 0 ? '+' : '-';
+
+    return `${operator} ${offset}`;
 }
