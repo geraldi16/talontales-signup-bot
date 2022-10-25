@@ -12,4 +12,5 @@ export default {
     SET_DATETIME: 'setdatetime',
     PING: 'ping',
     NOTE: 'note',
+    SWAP: 'swap',
 }

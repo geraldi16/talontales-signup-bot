@@ -5,6 +5,8 @@ export const InstanceName = {
     MALANGDO: 'malangdo',
     OLD_SEAL: 'oldseal',
     NEW_SEAL: 'newseal',
+    BAKONAWA: 'bakonawa',
+    OGH: 'OGH',
 };
 
 export const InstanceInput = {
@@ -14,6 +16,8 @@ export const InstanceInput = {
     [InstanceName.MALANGDO]: ['malangdo', 'ikan', 'malangdo hard'],
     [InstanceName.OLD_SEAL]: ['old seal', 'yuno', 'juno', 'old'],
     [InstanceName.NEW_SEAL]: ['fc', 'full', 'vana', 'vanaheim', 'aj', 'juperos', 'bog'],
+    [InstanceName.BAKONAWA]: ['bakonawa'],
+    [InstanceName.OGH]: ['ogh'],
 }
 
 export const InstanceInputMap = (() => {

@@ -61,6 +61,10 @@ export function showInfo() {
                 name: '`!note`',
                 value: 'Set a note for your the run. Planning and preparation are the keys of success!',
             },
+            {
+                name: '`!swap <jobname>`',
+                value: 'swap current job. Will move slot if existing job still empty. Will change the job name if occupied/ current job is flexible.',
+            },
         )
 }
 

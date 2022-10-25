@@ -4,7 +4,7 @@ import Command from './constants/command.constant.js';
 import { SetDateTimeType } from './constants/instances.constant.js';
 import { showInfo, showInfoInstance, showInfoJob } from './services/info.service.js';
 import { setDateTime, setNote, setUpNewInstance, showLatestSignup } from './services/instance.service.js';
-import { addNewPlayer, pingPlayer, removePlayer } from './services/player.service.js';
+import { addNewPlayer, pingPlayer, removePlayer, swapJob } from './services/player.service.js';
 
 const PREFIX = '!';
 const SPLITTER = ' ';
@@ -128,6 +128,16 @@ client.on('messageCreate', async (message) => {
             case Command.NOTE: {
                 try {
                     const sentMessage = await setNote(message.channelId, params.join(' '));
+                    message.channel.send({ embeds: [sentMessage] });
+                } catch (error) {
+                    console.log(error);
+                    message.channel.send(error.message);
+                }
+                break;
+            }
+            case Command.SWAP: {
+                try {
+                    const sentMessage = await swapJob(message.channelId, message.author, params);
                     message.channel.send({ embeds: [sentMessage] });
                 } catch (error) {
                     console.log(error);

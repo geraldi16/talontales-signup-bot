@@ -48,7 +48,7 @@ function _renderReserveList(reserveList) {
         return result + `Reserve: ${value.player?.username ?? ''} \n`;
     }, '');
 
-    return { name: 'Reserve List', value: valueString };
+    return { name: 'Reserve List (use `add <jobname>` to move up)', value: valueString };
 }
 
 function _getTakenSpot(playerList) {

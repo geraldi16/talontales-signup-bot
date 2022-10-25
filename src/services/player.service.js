@@ -20,6 +20,12 @@ export async function addNewPlayer(playerData, channelId, params) {
         if (JobInputMap.get(params[0])) {
             _insertAndSortPlayerData(signup.playerList, playerData, JobInputMap.get(params[0]));
             signup.changed('playerList', true);
+            // remove from reserve, if you are there
+            for (let i=0; i<signup.reserveList.length; i++) {
+                if (signup.reserveList[i].player && signup.reserveList[i].player.id === playerData.id) {
+                    signup.reserveList[i].player = null;
+                }
+            }
         }
     }
     await signup.save();
@@ -68,6 +74,41 @@ export async function pingPlayer(channelId) {
     result += 'Lets get readyy! We are about to sail soon!!';
 
     return result;
+}
+
+export async function swapJob(channelId, playerData, params) {
+    const signup = await validateAndGetSignupData(channelId);
+
+    const newJob = params[0];
+    if (JobInputMap.get(newJob)) {
+        // get current job
+        const currentJob = [];
+        let currentJobNumber = -1;
+        
+        for(let i = 0; i < signup.playerList.length; i ++) {
+            if (signup.playerList[i].player?.id === playerData.id) {
+                currentJob.push(signup.playerList[i]);
+                currentJobNumber = i;
+                break;
+            }
+        }
+
+        if (currentJob.length === 0) throw new Error('You are not registered in the sign up yet!!');
+
+        // swap job
+        try {
+            _insertAndSortPlayerData(signup.playerList, playerData, JobInputMap.get(newJob));
+            signup.playerList[currentJobNumber].player = null;
+        } catch (error) {
+            // this means no job available
+            // change the current job instead
+            signup.playerList[currentJobNumber].job = JobInputMap.get(newJob);
+        }
+        signup.changed('playerList', true);
+    }
+
+    await signup.save();
+    return buildSignupEmbedMessage(signup);
 }
 
 function _insertReservePlayer(reserveList, playerData) {
